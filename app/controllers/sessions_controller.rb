@@ -4,19 +4,18 @@ class SessionsController < ApplicationController
 
   # Create an authorized session if the e-mail received from Google Authentication callback is a a MobME email address.
   def create
-    unless param[:error]
+    unless params[:error]
       session[:authenticated] = auth_hash
       logger.info { auth_hash }
       redirect_to root_url
     else
-      redirect_to root_url, :error => param[:error_description]
+      redirect_to root_url, :error => params[:error_description]
     end
   end
 
   # Authentication failure management.
   def failure
     require 'base64'
-    logger.info { param }
     session[:authenticated] = false
     case params[:message]
       when "invalid_credentials"
@@ -25,7 +24,7 @@ class SessionsController < ApplicationController
         @reason = params.inspect
     end
 
-    redirect_to root_url, :error => param[:error_description]
+    redirect_to root_url, :error => "Authentication failed"
   end
 
   # Logout.
