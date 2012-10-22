@@ -1,0 +1,1 @@
+# A sample rails app with Instagram authentication
