@@ -24,4 +24,3 @@ yardoc/
 *~
 /config/database.yml
 config/config_development.yml
-config/config_production.yml
