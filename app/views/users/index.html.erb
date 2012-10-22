@@ -1,0 +1,5 @@
+<% unless session[:authenticated] %>
+<div class="span12 pagination-centered">
+	<a class="btn btn-large btn-primary" href="<%= url_for("auth/instagram")%>">Sign up with instagram</a>
+</div>
+<% end %>
